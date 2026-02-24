@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as Updates from 'expo-updates';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { initDatabase } from '@/src/lib/database';
 
 export {
   ErrorBoundary,
@@ -42,6 +43,8 @@ export default function RootLayout() {
     if (loaded) {
       SplashScreen.hideAsync();
       checkForOTAUpdate();
+      // Inicializa DB e seed data
+      initDatabase().catch(console.error);
     }
   }, [loaded]);
 
@@ -54,6 +57,13 @@ export default function RootLayout() {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       <Stack.Screen name="details" options={{ headerShown: false }} />
+      <Stack.Screen name="history" options={{ headerShown: false }} />
+      <Stack.Screen name="water" options={{ headerShown: false }} />
+      <Stack.Screen name="ble-scan" options={{ headerShown: false }} />
+      <Stack.Screen name="device" options={{ headerShown: false }} />
+      <Stack.Screen name="device-info" options={{ headerShown: false }} />
+      <Stack.Screen name="family" options={{ headerShown: false }} />
+      <Stack.Screen name="profile" options={{ headerShown: false }} />
     </Stack>
   );
 }
